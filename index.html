@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8f5">
+  <title>Lawren &amp; Kam — Our Little Love Story</title>
+  <style>
+    :root {
+      --ink: #392b31;
+      --muted: #79686f;
+      --rose: #bd6376;
+      --rose-dark: #98495c;
+      --paper: #fffaf8;
+      --blush: #f7e8e8;
+      --line: #ead9d9;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); }
+    a { color: inherit; }
+    .hero {
+      min-height: 92vh; display: grid; place-items: center; position: relative; overflow: hidden;
+      padding: 5rem 1.5rem; text-align: center;
+      background: radial-gradient(ellipse at 50% 45%, rgba(255,255,255,.92), rgba(255,248,245,.78) 45%, rgba(247,232,232,.88)),
+        linear-gradient(135deg, #f8e9e9, #fff8f5 55%, #f5e1e3);
+    }
+    .hero::before, .hero::after { content: "♡"; position: absolute; color: rgba(189,99,118,.13); font-family: var(--serif); pointer-events: none; }
+    .hero::before { font-size: 19rem; left: -3rem; top: 5%; transform: rotate(-17deg); }
+    .hero::after { font-size: 24rem; right: -5rem; bottom: -7rem; transform: rotate(14deg); }
+    .hero-inner { position: relative; z-index: 1; max-width: 760px; }
+    .eyebrow { color: var(--rose-dark); letter-spacing: .22em; text-transform: uppercase; font-size: .73rem; font-weight: 700; }
+    h1 { font: 400 clamp(3.2rem, 9vw, 7rem)/.98 var(--serif); margin: 1.15rem 0; letter-spacing: -.055em; }
+    h1 span { color: var(--rose); font-style: italic; }
+    .hero p { color: var(--muted); font: 1.1rem/1.8 var(--serif); max-width: 500px; margin: 1.5rem auto 2rem; }
+    .button { display: inline-flex; align-items: center; justify-content: center; padding: .9rem 1.35rem; border-radius: 999px; background: var(--rose); color: white; text-decoration: none; font-weight: 650; box-shadow: 0 8px 24px rgba(152,73,92,.2); transition: transform .2s, background .2s; }
+    .button:hover { background: var(--rose-dark); transform: translateY(-2px); }
+    .scroll-note { position: absolute; bottom: 1.6rem; color: var(--muted); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; }
+    .section { padding: 6rem 1.5rem; }
+    .section-inner { max-width: 1060px; margin: auto; }
+    .section-heading { text-align: center; margin: 0 auto 3rem; max-width: 620px; }
+    .section-heading h2 { font: 400 clamp(2.4rem, 5vw, 4rem)/1.1 var(--serif); margin: .65rem 0 1rem; letter-spacing: -.035em; }
+    .section-heading p { color: var(--muted); line-height: 1.75; margin: 0; }
+    .story { background: #fff; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.35rem; }
+    .memory { background: var(--paper); border: 1px solid var(--line); padding: .8rem .8rem 1.4rem; border-radius: 5px; box-shadow: 0 12px 35px rgba(65,36,45,.055); }
+    .photo-wrap { position: relative; aspect-ratio: 4 / 4.7; overflow: hidden; background: linear-gradient(145deg, #f4e3e3, #fbf3ee); }
+    .photo-wrap img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .photo-placeholder { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 1.2rem; color: var(--rose-dark); }
+    .photo-placeholder .heart { font: 3rem var(--serif); opacity: .8; }
+    .photo-placeholder strong { font: 1.35rem var(--serif); margin: .5rem 0 .25rem; }
+    .photo-placeholder small { color: var(--muted); line-height: 1.5; }
+    .upload { position: absolute; right: .65rem; bottom: .65rem; border: 0; border-radius: 999px; padding: .55rem .8rem; color: var(--ink); background: rgba(255,255,255,.93); font: 600 .76rem var(--sans); cursor: pointer; box-shadow: 0 2px 12px #392b3122; }
+    .upload:hover { background: #fff; color: var(--rose-dark); }
+    .upload input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+    .memory-copy { padding: 1.15rem .45rem 0; }
+    .memory-copy .number { color: var(--rose); font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; }
+    .memory-copy h3 { font: 1.55rem var(--serif); margin: .5rem 0; }
+    .memory-copy p { color: var(--muted); font-size: .91rem; line-height: 1.7; margin: 0; }
+    .quote-section { background: var(--blush); text-align: center; }
+    blockquote { max-width: 740px; margin: auto; font: italic clamp(1.7rem, 4vw, 2.8rem)/1.45 var(--serif); }
+    blockquote::before { content: "“"; display: block; color: var(--rose); font: 4rem var(--serif); height: 3rem; }
+    .quote-credit { color: var(--rose-dark); margin-top: 1.2rem; letter-spacing: .13em; text-transform: uppercase; font-size: .72rem; font-weight: 700; }
+    .ending { text-align: center; }
+    .ending .big-heart { color: var(--rose); font-size: 2rem; }
+    .ending h2 { font: 400 clamp(2.5rem, 6vw, 4.5rem)/1.1 var(--serif); margin: .6rem 0 1rem; }
+    .ending p { max-width: 520px; margin: auto; color: var(--muted); line-height: 1.8; }
+    footer { padding: 1.5rem; text-align: center; color: var(--muted); font-size: .78rem; border-top: 1px solid var(--line); }
+    @media (max-width: 760px) { .hero { min-height: 84vh; } .cards { grid-template-columns: 1fr; max-width: 470px; margin: auto; } .photo-wrap { aspect-ratio: 4 / 3.6; } .section { padding: 4.5rem 1.2rem; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">A little story about us</div>
+      <h1>Lawren <span>&amp;</span> Kam</h1>
+      <p>Two hearts, a thousand little moments, and a love story that keeps getting better.</p>
+      <a class="button" href="#our-story">Wander through our story <span aria-hidden="true">&nbsp;♡</span></a>
+    </div>
+    <div class="scroll-note">Made with love · scroll to begin</div>
+  </header>
+
+  <main>
+    <section class="section story" id="our-story">
+      <div class="section-inner">
+        <div class="section-heading">
+          <div class="eyebrow">The best kind of us</div>
+          <h2>Our story, in little moments</h2>
+          <p>Every love story is made of small things worth remembering. Add your favorite photos below and make this page yours.</p>
+        </div>
+        <div class="cards">
+          <article class="memory">
+            <div class="photo-wrap">
+              <img alt="A favorite photo of Lawren and Kam together" hidden>
+              <div class="photo-placeholder"><span class="heart">♡</span><strong>Where it began</strong><small>Add a photo from one of your first memories</small></div>
+              <label class="upload">＋ Add photo<input type="file" accept="image/*" aria-label="Add a photo for Where it began"></label>
+            </div>
+            <div class="memory-copy"><div class="number">Chapter one</div><h3>Where it began</h3><p>Somehow, in the middle of ordinary days, we found something extraordinary: each other.</p></div>
+          </article>
+          <article class="memory">
+            <div class="photo-wrap">
+              <img alt="A joyful memory of Lawren and Kam" hidden>
+              <div class="photo-placeholder"><span class="heart">♡</span><strong>Our favorite days</strong><small>Add a photo that always makes you smile</small></div>
+              <label class="upload">＋ Add photo<input type="file" accept="image/*" aria-label="Add a photo for Our favorite days"></label>
+            </div>
+            <div class="memory-copy"><div class="number">Chapter two</div><h3>Our favorite days</h3><p>The laughs that last too long, the little adventures, and feeling at home wherever we are together.</p></div>
+          </article>
+          <article class="memory">
+            <div class="photo-wrap">
+              <img alt="A photo of Lawren and Kam looking toward the future" hidden>
+              <div class="photo-placeholder"><span class="heart">♡</span><strong>Always &amp; forever</strong><small>Add a photo that feels like the two of you</small></div>
+              <label class="upload">＋ Add photo<input type="file" accept="image/*" aria-label="Add a photo for Always and forever"></label>
+            </div>
+            <div class="memory-copy"><div class="number">Chapter three</div><h3>Always &amp; forever</h3><p>Here's to all the moments still waiting for us—and choosing each other in every one.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section quote-section">
+      <div class="section-inner">
+        <blockquote>“The best place in the world is right beside you.”</blockquote>
+        <div class="quote-credit">A little reminder for Lawren &amp; Kam</div>
+      </div>
+    </section>
+
+    <section class="section ending">
+      <div class="section-inner">
+        <div class="big-heart" aria-hidden="true">♥</div>
+        <h2>To be continued…</h2>
+        <p>Our story is still being written, one lovely day at a time. Whatever comes next, I'm glad it's with you.</p>
+      </div>
+    </section>
+  </main>
+  <footer>Made with love for Lawren &amp; Kam <span aria-hidden="true">♡</span></footer>
+
+  <script>
+    // Photo choices stay in this browser. Images are resized first to keep storage use modest.
+    document.querySelectorAll('.memory').forEach((memory, index) => {
+      const image = memory.querySelector('img');
+      const placeholder = memory.querySelector('.photo-placeholder');
+      const input = memory.querySelector('input[type="file"]');
+      const key = `lawren-kam-memory-${index}`;
+      const showImage = (src) => { image.src = src; image.hidden = false; placeholder.hidden = true; };
+      try { const saved = localStorage.getItem(key); if (saved) showImage(saved); } catch (_) { /* Storage may be unavailable in private browsing. */ }
+      input.addEventListener('change', () => {
+        const file = input.files && input.files[0];
+        if (!file || !file.type.startsWith('image/')) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          const photo = new Image();
+          photo.onload = () => {
+            const scale = Math.min(1, 1400 / Math.max(photo.naturalWidth, photo.naturalHeight));
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.round(photo.naturalWidth * scale);
+            canvas.height = Math.round(photo.naturalHeight * scale);
+            canvas.getContext('2d').drawImage(photo, 0, 0, canvas.width, canvas.height);
+            const resized = canvas.toDataURL('image/jpeg', 0.82);
+            showImage(resized);
+            try { localStorage.setItem(key, resized); } catch (_) { /* The photo still displays until this page is closed. */ }
+          };
+          photo.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+  </script>
+</body>
+</html>
