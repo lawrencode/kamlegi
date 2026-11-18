@@ -14,6 +14,8 @@
       --paper: #fffaf8;
       --blush: #f7e8e8;
       --line: #ead9d9;
+      --navy: #071733;
+      --cream: #fff5da;
       --serif: Georgia, "Times New Roman", serif;
       --sans: "Avenir Next", Avenir, "Segoe UI", sans-serif;
     }
@@ -46,7 +48,7 @@
     h1 { font: 400 clamp(3.2rem, 9vw, 7rem)/.98 var(--serif); margin: 1.15rem 0; letter-spacing: -.055em; }
     h1 span { color: var(--rose); font-style: italic; }
     .hero p { color: var(--muted); font: 1.1rem/1.8 var(--serif); max-width: 500px; margin: 1.5rem auto 2rem; }
-    .button { display: inline-flex; align-items: center; justify-content: center; padding: .9rem 1.35rem; border-radius: 999px; background: var(--rose); color: white; text-decoration: none; font-weight: 700; transition: background .2s, transform .2s; }
+    .button { display: inline-flex; align-items: center; justify-content: center; padding: .9rem 1.35rem; border-radius: 999px; background: var(--rose); color: white; text-decoration: none; font-weight: 700; transition: .25s ease; }
     .button:hover { background: var(--rose-dark); transform: translateY(-2px); }
     .scroll-note { position: absolute; bottom: 1.6rem; color: var(--muted); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; }
     .section { padding: 6rem 1.5rem; }
@@ -63,10 +65,80 @@
     .memory-copy .number { color: var(--rose); font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; }
     .memory-copy h3 { font: 1.55rem var(--serif); margin: .5rem 0; }
     .memory-copy p { color: var(--muted); font-size: .91rem; line-height: 1.7; margin: 0; }
-    .quote-section { background: var(--blush); text-align: center; }
-    blockquote { max-width: 740px; margin: auto; font: italic clamp(1.7rem, 4vw, 2.8rem)/1.45 var(--serif); }
-    blockquote::before { content: "“"; display: block; color: var(--rose); font: 4rem var(--serif); height: 3rem; }
-    .quote-credit { color: var(--rose-dark); margin-top: 1.2rem; letter-spacing: .13em; text-transform: uppercase; font-size: .72rem; font-weight: 700; }
+
+    .patience-section {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(189,99,118,.12), transparent 20%),
+        radial-gradient(circle at 88% 80%, rgba(189,99,118,.10), transparent 24%),
+        var(--navy);
+      color: var(--cream);
+    }
+    .patience-section::before {
+      content: "";
+      position: absolute;
+      inset: 1.25rem;
+      border: 1px solid rgba(255,245,218,.16);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .patience-section .section-inner { max-width: 920px; position: relative; z-index: 1; }
+    .patience-heading { text-align: center; margin-bottom: 2.5rem; }
+    .patience-heading .eyebrow { color: #ddb0b9; }
+    .patience-heading h2 {
+      font: italic clamp(2.5rem, 6vw, 4.7rem)/1.05 var(--serif);
+      margin: .7rem 0 0;
+      letter-spacing: -.035em;
+      color: #fff9e8;
+    }
+    .patience-card {
+      position: relative;
+      max-width: 820px;
+      margin: auto;
+      padding: clamp(2rem, 5vw, 4.5rem);
+      border: 1px solid rgba(255,245,218,.22);
+      background: linear-gradient(135deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+      box-shadow: 0 30px 70px rgba(0,0,0,.22);
+      backdrop-filter: blur(5px);
+    }
+    .patience-card::before {
+      content: "“";
+      position: absolute;
+      top: -.38em;
+      left: .55rem;
+      font: 8rem/.8 var(--serif);
+      color: rgba(189,99,118,.55);
+    }
+    .patience-card p {
+      position: relative;
+      margin: 0;
+      font: clamp(1.35rem, 2.8vw, 2.15rem)/1.65 var(--serif);
+      text-wrap: pretty;
+      text-shadow: 0 1px 1px rgba(0,0,0,.2);
+    }
+    .patience-card p + p { margin-top: 1.4rem; }
+    .patience-credit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2.3rem;
+      color: #d8bbc1;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-size: .69rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    .patience-credit::before, .patience-credit::after {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #bd6376);
+    }
+    .patience-credit::after { transform: rotate(180deg); }
+
     .ending { text-align: center; }
     .ending .big-heart { color: var(--rose); font-size: 2rem; }
     .ending h2 { font: 400 clamp(2.5rem, 6vw, 4.5rem)/1.1 var(--serif); margin: .6rem 0 1rem; }
@@ -77,6 +149,11 @@
       .cards { grid-template-columns: 1fr; max-width: 470px; margin: auto; }
       .photo-wrap { aspect-ratio: 4 / 3.6; }
       .section { padding: 4.5rem 1.2rem; }
+      .patience-section::before { inset: .7rem; }
+      .patience-card { padding: 2.4rem 1.35rem 2.2rem; }
+      .patience-card p { line-height: 1.55; }
+      .patience-credit { line-height: 1.6; }
+      .patience-credit::before, .patience-credit::after { width: 20px; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -138,10 +215,17 @@
       </div>
     </section>
 
-    <section class="section quote-section">
+    <section class="section patience-section" aria-labelledby="patience-title">
       <div class="section-inner">
-        <blockquote>“The best place in the world is right beside you.”</blockquote>
-        <div class="quote-credit">A little reminder for Lawren &amp; Kam</div>
+        <div class="patience-heading">
+          <div class="eyebrow">A reminder for us</div>
+          <h2 id="patience-title">Keep moving forward</h2>
+        </div>
+        <div class="patience-card">
+          <p>Patience is not passive resignation, nor is it failing to act because of our fears. Patience means active waiting and enduring. It means staying with something and doing all that we can—working, hoping, and exercising faith; bearing hardship with fortitude, even when the desires of our hearts are delayed.</p>
+          <p><strong>Patience is not simply enduring; it is enduring well.</strong></p>
+        </div>
+        <div class="patience-credit">President Dieter F. Uchtdorf · Continue in Patience</div>
       </div>
     </section>
 
